@@ -1,0 +1,20 @@
+bin/cli.js
+  s_d155e928afddf9::t_251cd4ee72d194 11
+  s_d155e928afddf9::t_4981a47f47933a 19-24
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.1",
+  "base_commit_sha": "c3136afcb70164de294f5534cc7034fd34673b07",
+  "prompts": {},
+  "sessions": {
+    "s_d155e928afddf9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "61fa8bf7-3fb0-48f4-b21e-b5c461bba576",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "androz2091 <androz2091@gmail.com>"
+    }
+  }
+}
