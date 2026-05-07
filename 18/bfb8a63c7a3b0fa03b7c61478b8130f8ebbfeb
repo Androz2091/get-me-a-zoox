@@ -1,0 +1,27 @@
+src/credentials.js
+  s_d155e928afddf9::t_9a14c98202b914 1-24
+src/index.js
+  s_d155e928afddf9::t_a340ef2f9184b3 4-6
+src/auth.js
+  s_d155e928afddf9::t_a7e202e039ffbf 1-53
+bin/cli.js
+  s_d155e928afddf9::t_99330e9d3c7fa4 4-13,19-101,110,112,114-119,121-130,132-138,140-141,143-144,146-177,179-184,186-202,204-216
+README.md
+  s_d155e928afddf9::t_4308dce6762927 3,9,12-14,17-18,21-29,31-61,65,71,75,80,92-112,118,120-126,128,130
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.1",
+  "base_commit_sha": "18bfb8a63c7a3b0fa03b7c61478b8130f8ebbfeb",
+  "prompts": {},
+  "sessions": {
+    "s_d155e928afddf9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "61fa8bf7-3fb0-48f4-b21e-b5c461bba576",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "androz2091 <androz2091@gmail.com>"
+    }
+  }
+}
