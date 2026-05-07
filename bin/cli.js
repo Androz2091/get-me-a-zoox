@@ -8,7 +8,7 @@ const program = new Command();
 program
     .name('get-me-a-zoox')
     .description('Poll the Zoox service-state endpoint and notify when a ride becomes available.')
-    .requiredOption('-t, --token <bearer>', 'Firebase ID token (Authorization: Bearer <token>). Also reads ZOOX_TOKEN.', process.env.ZOOX_TOKEN)
+    .option('-t, --token <bearer>', 'Firebase ID token (Authorization: Bearer <token>). Falls back to $ZOOX_TOKEN.')
     .option('-s, --service-id <uuid>', 'Ride service ID', 'd1de4998-9827-4322-831e-7e83d0cd7fa4')
     .option('-i, --interval <ms>', 'Poll interval in milliseconds', (v) => parseInt(v, 10), 5000)
     .option('--once', 'Fetch once and exit')
@@ -16,7 +16,12 @@ program
     .parse(process.argv);
 
 const opts = program.opts();
-const client = new ZooxClient({ token: opts.token });
+const token = opts.token || process.env.ZOOX_TOKEN;
+if (!token) {
+    console.error('error: token is required (--token or $ZOOX_TOKEN)');
+    process.exit(1);
+}
+const client = new ZooxClient({ token });
 
 if (opts.once) {
     const state = await client.getServiceState(opts.serviceId);
