@@ -1,0 +1,25 @@
+bin/cli.js
+  s_d155e928afddf9::t_7e320a6963a322 19
+  s_d155e928afddf9::t_27eda7c039b123 26-27
+  s_d155e928afddf9::t_4eb51839efddb2 16-18
+  s_d155e928afddf9::t_03afb12feb51fb 23-25,28-29
+  s_d155e928afddf9::t_ab1a9753f9fff9 68,73,75,77-78,82-87
+README.md
+  s_d155e928afddf9::t_fc6ea6bc441642 33-38
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.1",
+  "base_commit_sha": "c38f9d3960f43b3ae2b62a699d9755cfff02b0d0",
+  "prompts": {},
+  "sessions": {
+    "s_d155e928afddf9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "61fa8bf7-3fb0-48f4-b21e-b5c461bba576",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "androz2091 <androz2091@gmail.com>"
+    }
+  }
+}
