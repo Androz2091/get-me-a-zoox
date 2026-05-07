@@ -1,0 +1,23 @@
+{
+  "name": "get-me-a-zoox",
+  "version": "0.1.0",
+  "description": "Reverse-engineered SDK + CLI for the Zoox Rider mobile gateway. Polls service-state until a ride is available.",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "bin": {
+    "get-me-a-zoox": "bin/cli.js"
+  },
+  "scripts": {
+    "start": "node bin/cli.js"
+  },
+  "keywords": ["zoox", "robotaxi", "reverse-engineering"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "commander": "^12.1.0"
+  }
+}
