@@ -13,9 +13,20 @@ program
     .option('-i, --interval <ms>', 'Poll interval in milliseconds', (v) => parseInt(v, 10), 5000)
     .option('--once', 'Fetch once and exit')
     .option('--no-notify', 'Disable macOS notification on availability')
+    .option('--no-alarm', 'Disable loud alarm on availability')
+    .option('--alarm-repeats <n>', 'How many times to play the alarm', (v) => parseInt(v, 10), 6)
+    .option('--alarm-sound <path>', 'Path to a sound file to play (afplay-compatible)', '/System/Library/Sounds/Sosumi.aiff')
+    .option('--test-alarm', 'Trigger the alarm immediately and exit')
     .parse(process.argv);
 
 const opts = program.opts();
+
+if (opts.testAlarm) {
+    announceAvailable({ estimated_wait_time: 0, riders_awaiting_assignment: 0 }, opts);
+    await new Promise((r) => setTimeout(r, 4000));
+    process.exit(0);
+}
+
 const token = opts.token || process.env.ZOOX_TOKEN;
 if (!token) {
     console.error('error: token is required (--token or $ZOOX_TOKEN)');
@@ -54,17 +65,25 @@ for await (const tick of watchServiceState(client, opts.serviceId, { intervalMs:
 
     if (lastSaturated === true && saturated === false && !firedAvailable) {
         firedAvailable = true;
-        announceAvailable(opts.notify, s);
+        announceAvailable(s, opts);
     }
     lastSaturated = saturated;
 }
 
-function announceAvailable(notify, state) {
+function announceAvailable(state, opts) {
     const msg = `Zoox is AVAILABLE — wait ${state.estimated_wait_time}s, ${state.riders_awaiting_assignment} in queue`;
-    process.stdout.write('\x07'); // terminal bell
+    process.stdout.write('\x07');
     console.log(`\n*** ${msg} ***\n`);
-    if (notify && process.platform === 'darwin') {
+    if (process.platform !== 'darwin') return;
+    if (opts.notify) {
         const script = `display notification "${msg.replace(/"/g, '\\"')}" with title "get-me-a-zoox" sound name "Glass"`;
         execFile('osascript', ['-e', script], () => {});
+    }
+    if (opts.alarm) {
+        execFile('osascript', ['-e', 'set volume output volume 100 without output muted'], () => {});
+        for (let i = 0; i < opts.alarmRepeats; i++) {
+            execFile('afplay', ['-v', '2', opts.alarmSound], () => {});
+        }
+        execFile('say', ['-v', 'Alex', '-r', '180', 'Zoox is available! Get a ride now!'], () => {});
     }
 }

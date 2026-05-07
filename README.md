@@ -30,6 +30,12 @@ The token can also be supplied via the `ZOOX_TOKEN` env var.
 | `-i, --interval <ms>` | Poll interval | `5000` |
 | `--once` | Fetch once and exit | — |
 | `--no-notify` | Disable macOS notification | — |
+| `--no-alarm` | Disable loud alarm (afplay loop + spoken alert) | — |
+| `--alarm-repeats <n>` | How many times to play the alarm sound | `6` |
+| `--alarm-sound <path>` | Sound file (afplay-compatible) | `/System/Library/Sounds/Sosumi.aiff` |
+| `--test-alarm` | Trigger the alarm immediately and exit | — |
+
+When availability is detected the CLI bumps macOS output volume to 100, loops the alarm sound, fires a system notification, and uses `say` to announce "Zoox is available — get a ride now". Run `--test-alarm` first to make sure your speakers won't startle anyone.
 
 ### Example
 
