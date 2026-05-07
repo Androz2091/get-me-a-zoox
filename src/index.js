@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { randomUUID } from 'node:crypto';
 
+export { FirebaseAuth } from './auth.js';
+export { loadCredentials, saveCredentials, CREDENTIALS_PATH } from './credentials.js';
+
 const DEFAULT_BASE_URL = 'https://mobile-gateway.prod.zooxapps.com';
 const DEFAULT_USER_AGENT = 'RiderApp/26.15.410 (Locale en-US; Release; ) Android/36 (Google; Pixel 9 Pro XL)';
 
